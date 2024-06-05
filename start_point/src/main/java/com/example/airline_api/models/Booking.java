@@ -1,11 +1,29 @@
 package com.example.airline_api.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "bookings")
 public class Booking {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private long id;
+
+    @ManyToOne
+    @JsonIgnoreProperties({"flights"})
     private Flight flight;
+
+    @ManyToOne
+    @JsonIgnoreProperties({"passengers"})
     private Passenger passenger;
+
+    @Column(name = "seat_number")
     private int seatNumber;
+
+    @Column(name = "meal_preference")
     private String mealPreference;
 
     public Booking(Flight flight, Passenger passenger, int seatNumber){

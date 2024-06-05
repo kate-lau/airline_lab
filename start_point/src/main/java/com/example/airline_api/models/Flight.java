@@ -1,16 +1,35 @@
 package com.example.airline_api.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "flights")
 public class Flight {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private long id;
+
+    @Column(name = "destination")
     private String destination;
+
+    @Column(name = "capacity")
     private int capacity;
+
+    @Column(name = "departure_date")
     private String departureDate;
+
+    @Column(name = "departure_time")
     private String departureTime;
-    private List<Passenger> passengers;
+
+    @OneToMany(mappedBy = "flight")
+    @JsonIgnoreProperties({"flight"})
+    private List<Booking> passengers;
 
     public Flight(String destination, int capacity, String departureDate, String departureTime) {
         this.destination = destination;
@@ -63,11 +82,11 @@ public class Flight {
         this.departureTime = departureTime;
     }
 
-    public List<Passenger> getPassengers() {
+    public List<Booking> getPassengers() {
         return passengers;
     }
 
-    public void setPassengers(List<Passenger> passengers) {
+    public void setPassengers(List<Booking> passengers) {
         this.passengers = passengers;
     }
 }
