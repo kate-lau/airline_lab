@@ -27,7 +27,7 @@ public class PassengerService {
         return passengerRepository.findAll();
     }
 
-    public Optional<Passenger> findSingleChocolate(Long id){
+    public Optional<Passenger> findSinglePassenger(Long id){
         return passengerRepository.findById(id);
     }
 

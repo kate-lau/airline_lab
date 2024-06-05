@@ -27,7 +27,7 @@ public class FlightService {
         return flightRepository.findAll();
     }
 
-    public Optional<Flight> findSingleChocolate(Long id){
+    public Optional<Flight> findSingleFlight(Long id){
         return flightRepository.findById(id);
     }
 
